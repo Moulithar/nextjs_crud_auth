@@ -1,18 +1,32 @@
-import AddUserDialog from "@/components/AddUserDialog";
-import UserList from "@/components/UserList";
-import { prisma } from "@/lib/prisma";
+import Link from "next/link";
 
-async function Home() {
-  const users = await prisma.user.findMany();
+export default function Home() {
   return (
-    <div className="container mx-auto p-4">
-      <h1>Users</h1>
-      <UserList users={users} />
-      <div className="flex justify-center">
-        <AddUserDialog isEdit={false} user={null} />
+    <main className="kbc-page">
+      <div className="kbc-shell">
+        <div className="kbc-layout" style={{ gridTemplateColumns: "1fr" }}>
+          <div className="kbc-left" style={{ alignItems: "center", textAlign: "center" }}>
+            <div className="kbc-header" style={{ width: "100%", justifyContent: "center" }}>
+              <div className="kbc-brand">
+                <span className="kbc-brand-mark">Y</span>
+                You & Me Quiz
+              </div>
+            </div>
+
+            <div className="kbc-question-box" style={{ width: "100%", maxWidth: "720px" }}>
+              <p className="kbc-question-label">Welcome</p>
+              <h1 className="kbc-question">Are you ready to discover the sweetest little quiz about us?</h1>
+              <p style={{ marginTop: 16, color: "#fef3c7", fontSize: "1.05rem", lineHeight: 1.7 }}>
+                Four playful questions. One funny panda host. One final reveal at the end.
+              </p>
+            </div>
+
+            <Link href="/1" className="kbc-next-button" style={{ minWidth: 220 }}>
+              Start Quiz
+            </Link>
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
-
-export default Home;
